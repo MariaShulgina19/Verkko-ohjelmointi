@@ -1,4 +1,4 @@
-//käytää sleep(ms) apufuntiona, simulation of time
+//käytää sleep(ms) apufuntiona
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -21,21 +21,20 @@ class worker {
         await sleep(duration); // jos ruokaa on, niin työtä tehdän DURATIOn ajan verran
         //this.n_food=this.n_food-1; //työn jälkeen kuluu yksi annos ruokaa to check
         this.n_food--;
-        const summary = 'Ruoka jäjellä: '+ this.n_food +' portions!'
-        console.log(summary); //printing how much food is left
+        console.log('Ruoka jäjellä: '+ this.n_food +' portions!'); //printing how much food is left
         console.log('työ tehty, WELL DONE!');
         console.log();
-        return summary; //why this is needed
+        
         }
-            return; //Promise <void>
+            return; //Promise<void>
         }
 }
     
-let worker_obj = new worker (5); //adding worker with three portion of food
+let worker_obj = new worker (10); //adding worker with three portion of food
 
-worker_obj.do_work(2000).then(() => {
-    return worker_obj.do_work(1000);
-}).then(() =>{
+worker_obj.do_work(2000).then(() => { //worker_obj.do_work(2000).then(() => {
+    return worker_obj.do_work(1000); //worker_obj.do_work(1000);
+}).then(() =>{                          //return --wait when one work is done
     return worker_obj.do_work(3000);
 }).then(() =>{
     return worker_obj.do_work(2000);
